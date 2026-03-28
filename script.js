@@ -347,15 +347,18 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // ============================================================
-  // TESTIMONIALS SLIDER
+  // TESTIMONIALS SLIDER (Touch-friendly)
   // ============================================================
   const track = document.querySelector('.testimonials-track');
   if (track) {
     let isDown = false;
     let startX;
     let scrollLeft;
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
+    // Mouse events
     track.addEventListener('mousedown', (e) => {
+      if (isTouchDevice) return;
       isDown = true;
       track.style.cursor = 'grabbing';
       startX = e.pageX - track.offsetLeft;
@@ -364,30 +367,56 @@ document.addEventListener('DOMContentLoaded', () => {
     track.addEventListener('mouseleave', () => { isDown = false; track.style.cursor = ''; });
     track.addEventListener('mouseup', () => { isDown = false; track.style.cursor = ''; });
     track.addEventListener('mousemove', (e) => {
-      if (!isDown) return;
+      if (!isDown || isTouchDevice) return;
       e.preventDefault();
       const x = e.pageX - track.offsetLeft;
       const walk = (x - startX) * 2;
       track.scrollLeft = scrollLeft - walk;
     });
 
-    // Auto scroll
-    let autoScrollInterval = setInterval(() => {
-      track.scrollLeft += 1;
-      if (track.scrollLeft >= track.scrollWidth - track.clientWidth) {
-        track.scrollLeft = 0;
-      }
-    }, 20);
+    // Touch events for mobile
+    track.addEventListener('touchstart', (e) => {
+      isDown = true;
+      startX = e.touches[0].pageX - track.offsetLeft;
+      scrollLeft = track.scrollLeft;
+    }, { passive: true });
+    
+    track.addEventListener('touchend', () => { isDown = false; });
+    
+    track.addEventListener('touchmove', (e) => {
+      if (!isDown) return;
+      const x = e.touches[0].pageX - track.offsetLeft;
+      const walk = (x - startX) * 1.5;
+      track.scrollLeft = scrollLeft - walk;
+    }, { passive: true });
 
-    track.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
-    track.addEventListener('mouseleave', () => {
+    // Auto scroll (only on desktop)
+    let autoScrollInterval;
+    if (!isTouchDevice) {
       autoScrollInterval = setInterval(() => {
         track.scrollLeft += 1;
         if (track.scrollLeft >= track.scrollWidth - track.clientWidth) {
           track.scrollLeft = 0;
         }
       }, 20);
-    });
+
+      track.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
+      track.addEventListener('mouseleave', () => {
+        autoScrollInterval = setInterval(() => {
+          track.scrollLeft += 1;
+          if (track.scrollLeft >= track.scrollWidth - track.clientWidth) {
+            track.scrollLeft = 0;
+          }
+        }, 20);
+      });
+    }
+    
+    // Enable native scroll on mobile
+    if (isTouchDevice) {
+      track.style.overflowX = 'auto';
+      track.style.scrollSnapType = 'x mandatory';
+      track.style.WebkitOverflowScrolling = 'touch';
+    }
   }
 
   // ============================================================
@@ -435,10 +464,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ============================================================
-  // SMOOTH PARALLAX HERO
+  // SMOOTH PARALLAX HERO (Reduced on mobile for performance)
   // ============================================================
   const heroBg = document.querySelector('.hero-bg');
-  if (heroBg) {
+  const isMobile = window.innerWidth <= 768;
+  if (heroBg && !isMobile) {
     window.addEventListener('scroll', () => {
       const y = window.scrollY;
       heroBg.style.transform = `translateY(${y * 0.3}px)`;
@@ -446,40 +476,43 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ============================================================
-  // ENHANCED MOUSE INTERACTIONS
+  // ENHANCED MOUSE INTERACTIONS (Desktop only)
   // ============================================================
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
   
-  // Magnetic effect for buttons
-  const magneticBtns = document.querySelectorAll('.btn-primary, .btn-outline, .search-btn, .nav-cta');
-  magneticBtns.forEach(btn => {
-    btn.addEventListener('mousemove', (e) => {
-      const rect = btn.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
-      btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+  if (!isTouchDevice) {
+    // Magnetic effect for buttons
+    const magneticBtns = document.querySelectorAll('.btn-primary, .btn-outline, .search-btn, .nav-cta');
+    magneticBtns.forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = '';
+      });
     });
-    btn.addEventListener('mouseleave', () => {
-      btn.style.transform = '';
-    });
-  });
 
-  // Tilt effect for cards
-  const tiltCards = document.querySelectorAll('.car-card, .feature-card, .stat-card');
-  tiltCards.forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      const rotateX = (y - centerY) / 20;
-      const rotateY = (centerX - x) / 20;
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+    // Tilt effect for cards (desktop only)
+    const tiltCards = document.querySelectorAll('.car-card, .feature-card, .stat-card');
+    tiltCards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = (y - centerY) / 20;
+        const rotateY = (centerX - x) / 20;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
     });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
-    });
-  });
+  }
 
   // ============================================================
   // TYPEWRITER EFFECT FOR HERO BADGE
@@ -493,12 +526,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ============================================================
-  // CURSOR TRAIL EFFECT IN HERO
+  // CURSOR TRAIL EFFECT IN HERO (Desktop only)
   // ============================================================
   const hero = document.querySelector('.hero');
-  if (hero) {
+  if (hero && !isTouchDevice) {
     hero.addEventListener('mousemove', (e) => {
       const trail = document.createElement('div');
+      trail.className = 'cursor-trail';
       trail.style.cssText = `
         position: fixed;
         left: ${e.clientX}px;

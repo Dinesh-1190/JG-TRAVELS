@@ -197,6 +197,13 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   display: flex;
   align-items: center;
   overflow: hidden;
+  padding-bottom: 2rem;
+}
+
+/* Ensure seamless connection to stats section */
+.hero + .stats-section {
+  margin-top: 0;
+  padding-top: 4rem;
 }
 
 .hero-bg {

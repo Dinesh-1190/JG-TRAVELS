@@ -32,7 +32,7 @@
         <li><a href="contact.html">Contact</a></li>
         <li><a href="contact.html" class="nav-cta">Book Now</a></li>
       </ul>
-      <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle Menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
     </div>
   </nav>
 
@@ -50,15 +50,15 @@
   </header>
 
   <!-- Quick Contact Bar -->
-  <div style="background:var(--white);border-bottom:1px solid var(--cream-dark);padding:1.2rem 2rem;">
-    <div class="container" style="display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;">
-      <a href="tel:09861399689" style="display:flex;align-items:center;gap:10px;color:var(--navy);font-weight:600;font-size:0.92rem;padding:8px 16px;background:var(--cream);border-radius:50px;transition:var(--transition);" onmouseover="this.style.background='var(--gold)';this.style.color='white'" onmouseout="this.style.background='var(--cream)';this.style.color='var(--navy)'">
+  <div class="quick-contact-strip">
+    <div class="container quick-contact-actions">
+      <a href="tel:09861399689" class="quick-contact-link">
         📞 Call: 098613 99689
       </a>
-      <a href="https://wa.me/919861399689" target="_blank" style="display:flex;align-items:center;gap:10px;color:var(--white);font-weight:600;font-size:0.92rem;padding:8px 16px;background:#25D366;border-radius:50px;transition:var(--transition);">
+      <a href="https://wa.me/919861399689" target="_blank" rel="noopener noreferrer" class="quick-contact-link whatsapp-link">
         💬 WhatsApp Us
       </a>
-      <a href="mailto:info@jagannath-travels.com" style="display:flex;align-items:center;gap:10px;color:var(--navy);font-weight:600;font-size:0.92rem;padding:8px 16px;background:var(--cream);border-radius:50px;">
+      <a href="mailto:info@jagannath-travels.com" class="quick-contact-link">
         ✉️ Email Us
       </a>
     </div>
@@ -222,7 +222,7 @@
       </div>
 
       <!-- Nearby Landmarks -->
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2rem;" class="reveal">
+      <div class="four-up-grid reveal" style="gap:1rem;margin-top:2rem;">
         <div style="background:var(--white);border:1px solid var(--cream-dark);border-radius:var(--radius);padding:1.2rem;text-align:center;">
           <div style="font-size:1.8rem;margin-bottom:0.4rem;">🏥</div>
           <div style="font-size:0.82rem;font-weight:600;color:var(--navy);">District Hospital</div>

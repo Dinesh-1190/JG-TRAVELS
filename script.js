@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const nav = document.getElementById('mainNav');
   const navToggle = document.getElementById('navToggle');
   const navLinks = document.getElementById('navLinks');
+  const navToggleSpans = navToggle ? navToggle.querySelectorAll('span') : [];
 
   // Scrolled state
   const handleNavScroll = () => {
@@ -40,26 +41,63 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Mobile toggle
+  const syncNavState = (isOpen) => {
+    if (!navLinks || !navToggle) return;
+    const isMobileViewport = window.innerWidth <= 768;
+
+    navLinks.classList.toggle('open', isOpen);
+    document.body.classList.toggle('nav-open', isOpen);
+    navToggle.setAttribute('aria-expanded', String(isOpen));
+    navLinks.setAttribute('aria-hidden', String(isMobileViewport && !isOpen));
+
+    if (navToggleSpans.length === 3) {
+      if (isOpen) {
+        navToggleSpans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+        navToggleSpans[1].style.opacity = '0';
+        navToggleSpans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+      } else {
+        navToggleSpans[0].style.transform = '';
+        navToggleSpans[1].style.opacity = '';
+        navToggleSpans[2].style.transform = '';
+      }
+    }
+  };
+
+  const closeNav = () => syncNavState(false);
+
   if (navToggle && navLinks) {
     navToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
-      const spans = navToggle.querySelectorAll('span');
-      if (navLinks.classList.contains('open')) {
-        spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-        spans[1].style.opacity = '0';
-        spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
-      } else {
-        spans[0].style.transform = '';
-        spans[1].style.opacity = '';
-        spans[2].style.transform = '';
+      syncNavState(!navLinks.classList.contains('open'));
+    });
+
+    document.addEventListener('click', (event) => {
+      if (window.innerWidth > 768 || !navLinks.classList.contains('open') || !nav) return;
+      if (!nav.contains(event.target)) {
+        closeNav();
       }
     });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        closeNav();
+      }
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) {
+        closeNav();
+      } else {
+        syncNavState(navLinks.classList.contains('open'));
+      }
+    }, { passive: true });
+
+    syncNavState(false);
   }
 
   // Close nav on link click
   if (navLinks) {
     navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => navLinks.classList.remove('open'));
+      link.addEventListener('click', closeNav);
     });
   }
 

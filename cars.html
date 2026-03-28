@@ -52,7 +52,7 @@
         <li><a href="contact.html">Contact</a></li>
         <li><a href="contact.html" class="nav-cta">Book Now</a></li>
       </ul>
-      <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle Menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
     </div>
   </nav>
 
@@ -75,20 +75,20 @@
     <div class="container">
 
       <!-- Stats Bar -->
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2.5rem;background:var(--white);border-radius:var(--radius-lg);padding:1.5rem;border:1px solid var(--cream-dark);box-shadow:0 4px 20px rgba(0,0,0,0.04);" class="reveal">
-        <div style="text-align:center;padding:0.5rem;">
+      <div class="fleet-stats reveal">
+        <div class="fleet-stat">
           <div style="font-family:var(--font-display);font-size:1.8rem;color:var(--gold);font-weight:700;">15+</div>
           <div style="font-size:0.75rem;color:var(--text-light);text-transform:uppercase;letter-spacing:0.08em;">Vehicles</div>
         </div>
-        <div style="text-align:center;padding:0.5rem;border-left:1px solid var(--cream-dark);">
+        <div class="fleet-stat">
           <div style="font-family:var(--font-display);font-size:1.8rem;color:var(--gold);font-weight:700;">100%</div>
           <div style="font-size:0.75rem;color:var(--text-light);text-transform:uppercase;letter-spacing:0.08em;">AC Cars</div>
         </div>
-        <div style="text-align:center;padding:0.5rem;border-left:1px solid var(--cream-dark);">
+        <div class="fleet-stat">
           <div style="font-family:var(--font-display);font-size:1.8rem;color:var(--gold);font-weight:700;">24/7</div>
           <div style="font-size:0.75rem;color:var(--text-light);text-transform:uppercase;letter-spacing:0.08em;">Available</div>
         </div>
-        <div style="text-align:center;padding:0.5rem;border-left:1px solid var(--cream-dark);">
+        <div class="fleet-stat">
           <div style="font-family:var(--font-display);font-size:1.8rem;color:var(--gold);font-weight:700;">5★</div>
           <div style="font-size:0.75rem;color:var(--text-light);text-transform:uppercase;letter-spacing:0.08em;">Rating</div>
         </div>
@@ -142,7 +142,7 @@
             <button class="filter-btn" data-filter="van">Tempo Traveller</button>
           </div>
 
-          <div class="cars-grid" style="grid-template-columns:repeat(2,1fr);">
+          <div class="cars-grid cars-grid-page">
 
             <article class="car-card reveal delay-1" data-type="sedan" data-seats="4" data-features="ac,music,luggage">
               <div class="car-img-wrap">
@@ -291,7 +291,7 @@
   <!-- Pricing Info Banner -->
   <section style="background:var(--gradient-navy);padding:3rem 2rem;">
     <div class="container">
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;text-align:center;" class="reveal">
+      <div class="three-up-grid reveal" style="gap:1.5rem;text-align:center;">
         <div style="padding:1.5rem;border-radius:var(--radius);border:1px solid rgba(200,134,10,0.15);">
           <div style="font-size:2rem;margin-bottom:0.5rem;">💼</div>
           <div style="font-family:var(--font-display);color:var(--white);font-size:1rem;margin-bottom:0.4rem;">Corporate Packages</div>

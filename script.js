@@ -350,14 +350,47 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ============================================================
-  // CONTACT FORM
+  // CONTACT FORM - SEND TO WHATSAPP
   // ============================================================
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      showToast('✅ Message sent! We\'ll reply within 2 hours.');
-      contactForm.reset();
+      
+      // Get form values
+      const name = document.getElementById('cname').value;
+      const phone = document.getElementById('cphone').value;
+      const email = document.getElementById('cemail').value;
+      const service = document.getElementById('service').value;
+      const date = document.getElementById('cdate').value;
+      const message = document.getElementById('cmessage').value;
+      
+      // Format WhatsApp message
+      let whatsappMessage = `*New Booking Inquiry*\n\n`;
+      whatsappMessage += `*Name:* ${name}\n`;
+      whatsappMessage += `*Phone:* ${phone}\n`;
+      if (email) whatsappMessage += `*Email:* ${email}\n`;
+      whatsappMessage += `*Service:* ${service}\n`;
+      if (date) whatsappMessage += `*Travel Date:* ${date}\n`;
+      whatsappMessage += `\n*Message:*\n${message}`;
+      
+      // Encode message for URL
+      const encodedMessage = encodeURIComponent(whatsappMessage);
+      
+      // WhatsApp API URL
+      const whatsappNumber = '919861399689'; // +91 98613 99689
+      const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+      
+      // Open WhatsApp
+      window.open(whatsappURL, '_blank');
+      
+      // Show success message
+      showToast('✅ Redirecting to WhatsApp...');
+      
+      // Reset form after a short delay
+      setTimeout(() => {
+        contactForm.reset();
+      }, 1000);
     });
   }
 

@@ -16,12 +16,12 @@
     "name": "Jagannath Travels Car Fleet",
     "description": "Premium rental vehicles available at Jagannath Travels, Angul",
     "itemListElement": [
-      {"@type":"ListItem","position":1,"name":"Swift Dzire","description":"Sedan, 4 Seater, AC - Affordable Rate"},
-      {"@type":"ListItem","position":2,"name":"Toyota Innova Crysta","description":"MUV, 7 Seater, AC - Affordable Rate"},
-      {"@type":"ListItem","position":3,"name":"Toyota Fortuner","description":"Premium SUV, 7 Seater, AC - Affordable Rate"},
+      {"@type":"ListItem","position":1,"name":"Mahindra Bolero","description":"SUV, 7 Seater, AC - Affordable Rate"},
+      {"@type":"ListItem","position":2,"name":"Force Camper","description":"Van, 12 Seater, AC - Affordable Rate"},
+      {"@type":"ListItem","position":3,"name":"Swift Dzire","description":"Sedan, 4 Seater, AC - Affordable Rate"},
       {"@type":"ListItem","position":4,"name":"Mahindra Scorpio","description":"SUV, 7 Seater, AC - Affordable Rate"},
       {"@type":"ListItem","position":5,"name":"Maruti Ertiga","description":"MPV, 7 Seater, AC - Affordable Rate"},
-      {"@type":"ListItem","position":6,"name":"Tempo Traveller","description":"Van, 12-17 Seater, AC - Affordable Rate"}
+      {"@type":"ListItem","position":6,"name":"Toyota Innova","description":"MUV, 7 Seater, AC - Affordable Rate"}
     ]
   }
   </script>
@@ -41,7 +41,9 @@
   <nav class="nav" id="mainNav">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">
-        <div class="logo-icon">🚗</div>
+        <div class="logo-icon">
+          <img src="images/logo.png" alt="Jagannath Travels Logo">
+        </div>
         <div class="logo-text">Jagannath Travels<span>Angul, Odisha</span></div>
       </a>
       <ul class="nav-links" id="navLinks">
@@ -144,9 +146,64 @@
 
           <div class="cars-grid cars-grid-page">
 
-            <article class="car-card reveal delay-1" data-type="sedan" data-seats="4" data-features="ac,music,luggage">
-              <div class="car-img-wrap">
-                <div class="car-emoji">🚗</div>
+            <article class="car-card reveal delay-1" data-type="suv" data-seats="7" data-features="ac,music">
+              <div class="car-img-wrap" style="background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);">
+                <img src="images/cars/bollero.webp" alt="Mahindra Bolero" class="car-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="car-placeholder" style="display:none;">
+                  <div class="car-emoji">🚜</div>
+                </div>
+                <div class="car-badge">Rugged</div>
+                <div class="car-overlay"><a href="contact.html" class="car-overlay-btn">Enquire Now</a></div>
+              </div>
+              <div class="car-info">
+                <h2 class="car-name">Mahindra Bolero</h2>
+                <div class="car-type">SUV · 7 Seater · Diesel</div>
+                <div class="car-features">
+                  <span class="car-feat">❄️ AC</span>
+                  <span class="car-feat">💪 Powerful</span>
+                  <span class="car-feat">🧳 Luggage</span>
+                </div>
+                <div style="font-size:0.85rem;color:var(--text-mid);margin-bottom:1rem;line-height:1.7;">
+                  Rugged and reliable SUV perfect for outstation trips and rough terrain. Comfortable and spacious.
+                </div>
+                <div class="car-footer">
+                  <a href="contact.html" class="car-book-btn">📞 Get Quote</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="car-card reveal delay-2" data-type="van" data-seats="12" data-features="ac,music,luggage">
+              <div class="car-img-wrap" style="background: linear-gradient(135deg, #4682B4 0%, #5F9EA0 100%);">
+                <img src="images/cars/camper.avif" alt="Force Camper" class="car-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="car-placeholder" style="display:none;">
+                  <div class="car-emoji">🚌</div>
+                </div>
+                <div class="car-badge">Best Value</div>
+                <div class="car-overlay"><a href="contact.html" class="car-overlay-btn">Enquire Now</a></div>
+              </div>
+              <div class="car-info">
+                <h2 class="car-name">Force Camper</h2>
+                <div class="car-type">Van · 12 Seater · Diesel</div>
+                <div class="car-features">
+                  <span class="car-feat">❄️ AC</span>
+                  <span class="car-feat">💺 Spacious</span>
+                  <span class="car-feat">🎵 Music</span>
+                </div>
+                <div style="font-size:0.85rem;color:var(--text-mid);margin-bottom:1rem;line-height:1.7;">
+                  Ideal for group travel, picnics, pilgrimage tours, and school/corporate outings.
+                </div>
+                <div class="car-footer">
+                  <a href="contact.html" class="car-book-btn">📞 Get Quote</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="car-card reveal delay-3" data-type="sedan" data-seats="4" data-features="ac,music,luggage">
+              <div class="car-img-wrap" style="background: linear-gradient(135deg, #2F4F4F 0%, #708090 100%);">
+                <img src="images/cars/dzire.avif" alt="Swift Dzire" class="car-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="car-placeholder" style="display:none;">
+                  <div class="car-emoji">🚗</div>
+                </div>
                 <div class="car-badge">Most Booked</div>
                 <div class="car-overlay"><a href="contact.html" class="car-overlay-btn">Enquire Now</a></div>
               </div>
@@ -167,55 +224,12 @@
               </div>
             </article>
 
-            <article class="car-card reveal delay-2" data-type="muv" data-seats="7" data-features="ac,music,luggage">
-              <div class="car-img-wrap">
-                <div class="car-emoji">🚙</div>
-                <div class="car-badge">Family Favorite</div>
-                <div class="car-overlay"><a href="contact.html" class="car-overlay-btn">Enquire Now</a></div>
-              </div>
-              <div class="car-info">
-                <h2 class="car-name">Toyota Innova Crysta</h2>
-                <div class="car-type">MUV · 7 Seater · Diesel</div>
-                <div class="car-features">
-                  <span class="car-feat">❄️ AC</span>
-                  <span class="car-feat">🛡 Safe</span>
-                  <span class="car-feat">💺 Spacious</span>
-                </div>
-                <div style="font-size:0.85rem;color:var(--text-mid);margin-bottom:1rem;line-height:1.7;">
-                  Premium MUV with plush interiors. Perfect for family trips, weddings, and corporate travel.
-                </div>
-                <div class="car-footer">
-                  <a href="contact.html" class="car-book-btn">📞 Get Quote</a>
-                </div>
-              </div>
-            </article>
-
-            <article class="car-card reveal delay-3" data-type="luxury" data-seats="7" data-features="ac,music,luggage">
-              <div class="car-img-wrap" style="background:linear-gradient(135deg,#1A2744,#243156)">
-                <div class="car-emoji">🏆</div>
-                <div class="car-badge" style="background:white;color:var(--navy)">Luxury</div>
-                <div class="car-overlay"><a href="contact.html" class="car-overlay-btn">Enquire Now</a></div>
-              </div>
-              <div class="car-info">
-                <h2 class="car-name">Toyota Fortuner</h2>
-                <div class="car-type">Premium SUV · 7 Seater · Diesel</div>
-                <div class="car-features">
-                  <span class="car-feat">❄️ AC</span>
-                  <span class="car-feat">💺 Leather</span>
-                  <span class="car-feat">🔇 Quiet Cabin</span>
-                </div>
-                <div style="font-size:0.85rem;color:var(--text-mid);margin-bottom:1rem;line-height:1.7;">
-                  The pinnacle of luxury travel. Experience top-tier comfort for special occasions and VIP transfers.
-                </div>
-                <div class="car-footer">
-                  <a href="contact.html" class="car-book-btn">📞 Get Quote</a>
-                </div>
-              </div>
-            </article>
-
             <article class="car-card reveal delay-1" data-type="suv" data-seats="7" data-features="ac,music">
-              <div class="car-img-wrap">
-                <div class="car-emoji">🚜</div>
+              <div class="car-img-wrap" style="background: linear-gradient(135deg, #8B0000 0%, #B22222 100%);">
+                <img src="images/cars/scorpio.jpg" alt="Mahindra Scorpio" class="car-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="car-placeholder" style="display:none;">
+                  <div class="car-emoji">🚜</div>
+                </div>
                 <div class="car-badge">Adventure</div>
                 <div class="car-overlay"><a href="contact.html" class="car-overlay-btn">Enquire Now</a></div>
               </div>
@@ -237,9 +251,12 @@
             </article>
 
             <article class="car-card reveal delay-2" data-type="muv" data-seats="7" data-features="ac,luggage">
-              <div class="car-img-wrap">
-                <div class="car-emoji">🚐</div>
-                <div class="car-badge">Best Value</div>
+              <div class="car-img-wrap" style="background: linear-gradient(135deg, #4169E1 0%, #6495ED 100%);">
+                <img src="images/cars/ertiga.webp" alt="Maruti Ertiga" class="car-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="car-placeholder" style="display:none;">
+                  <div class="car-emoji">🚐</div>
+                </div>
+                <div class="car-badge">Group Travel</div>
                 <div class="car-overlay"><a href="contact.html" class="car-overlay-btn">Enquire Now</a></div>
               </div>
               <div class="car-info">
@@ -259,22 +276,25 @@
               </div>
             </article>
 
-            <article class="car-card reveal delay-3" data-type="van" data-seats="12" data-features="ac,music">
-              <div class="car-img-wrap" style="background:linear-gradient(135deg,#f0ebe0,var(--cream));">
-                <div class="car-emoji">🚌</div>
-                <div class="car-badge">Group Travel</div>
+            <article class="car-card reveal delay-3" data-type="muv" data-seats="7" data-features="ac,music,luggage">
+              <div class="car-img-wrap" style="background: linear-gradient(135deg, #2F4F4F 0%, #556B2F 100%);">
+                <img src="images/cars/innova.avif" alt="Toyota Innova" class="car-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="car-placeholder" style="display:none;">
+                  <div class="car-emoji">🚙</div>
+                </div>
+                <div class="car-badge">Family Favorite</div>
                 <div class="car-overlay"><a href="contact.html" class="car-overlay-btn">Enquire Now</a></div>
               </div>
               <div class="car-info">
-                <h2 class="car-name">Tempo Traveller</h2>
-                <div class="car-type">Van · 12–17 Seater · Diesel</div>
+                <h2 class="car-name">Toyota Innova</h2>
+                <div class="car-type">MUV · 7 Seater · Diesel</div>
                 <div class="car-features">
                   <span class="car-feat">❄️ AC</span>
-                  <span class="car-feat">💺 Push-back</span>
-                  <span class="car-feat">🎵 Music</span>
+                  <span class="car-feat">🛡 Safe</span>
+                  <span class="car-feat">💺 Spacious</span>
                 </div>
                 <div style="font-size:0.85rem;color:var(--text-mid);margin-bottom:1rem;line-height:1.7;">
-                  Ideal for large groups, picnics, pilgrimage tours, and school/corporate outings.
+                  Premium MUV with plush interiors. Perfect for family trips, weddings, and corporate travel.
                 </div>
                 <div class="car-footer">
                   <a href="contact.html" class="car-book-btn">📞 Get Quote</a>
@@ -327,7 +347,7 @@
   <footer>
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="footer-logo"><div class="logo-icon">🚗</div><div class="logo-text">Jagannath Travels<span>Premium Car Rental</span></div></div>
+        <div class="footer-logo"><div class="logo-icon"><img src="images/logo.png" alt="Jagannath Travels Logo"></div><div class="logo-text">Jagannath Travels<span>Premium Car Rental</span></div></div>
         <p class="footer-desc">Reliable & affordable car rental across Odisha since 2015. 24/7 service guaranteed.</p>
         <div class="footer-social">
           <a href="#" class="social-btn">📘</a>

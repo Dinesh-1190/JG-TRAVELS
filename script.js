@@ -102,11 +102,26 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Set active nav link
-  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  const normalizePath = (path) => {
+    if (!path || path === '/') return '/';
+    return path.endsWith('/') && path !== '/' ? path.slice(0, -1) : path;
+  };
+  const currentPath = normalizePath(window.location.pathname);
   if (navLinks) {
     navLinks.querySelectorAll('a').forEach(link => {
       const href = link.getAttribute('href');
-      if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+      if (!href) return;
+
+      let linkPath;
+      try {
+        linkPath = normalizePath(new URL(href, window.location.origin).pathname);
+      } catch {
+        return;
+      }
+
+      const isHomeEquivalent = (currentPath === '/' && linkPath === '/index.html') ||
+        (currentPath === '/index.html' && linkPath === '/');
+      if (currentPath === linkPath || isHomeEquivalent) {
         link.classList.add('active');
       }
     });

@@ -103,8 +103,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Set active nav link
   const normalizePath = (path) => {
-    if (!path || path === '/') return '/';
-    return path.endsWith('/') && path !== '/' ? path.slice(0, -1) : path;
+    if (!path || path === '/' || path === '/index.html') return '/';
+    return path.endsWith('/') ? path.slice(0, -1) : path;
   };
   const currentPath = normalizePath(window.location.pathname);
   if (navLinks) {
@@ -119,9 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      const isHomeEquivalent = (currentPath === '/' && linkPath === '/index.html') ||
-        (currentPath === '/index.html' && linkPath === '/');
-      if (currentPath === linkPath || isHomeEquivalent) {
+      if (currentPath === linkPath) {
         link.classList.add('active');
       }
     });

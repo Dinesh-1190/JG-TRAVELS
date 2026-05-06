@@ -3,6 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    (function () {
+      const canonicalHost = 'www.jagannathtravel.com';
+      const { protocol, host, pathname, search, hash } = window.location;
+      const normalizedPath = pathname === '/index.html' ? '/' : pathname;
+      const needsRedirect = protocol !== 'https:' || host !== canonicalHost || normalizedPath !== pathname;
+      if (needsRedirect) {
+        window.location.replace(`https://${canonicalHost}${normalizedPath}${search}${hash}`);
+      }
+    })();
+  </script>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="google-site-verification" content="Lb2cw_-ijc-06UfohFLDESgAxmeHocXowUyaujRr7yM" />
   <title>Jagannath Travels – Best Car Rental in Angul | Taxi Service Odisha</title>

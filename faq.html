@@ -3,6 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    (function () {
+      const canonicalHost = 'www.jagannathtravel.com';
+      const { protocol, host, pathname, search, hash } = window.location;
+      const normalizedPath = pathname === '/index.html' ? '/' : pathname;
+      const needsRedirect = protocol !== 'https:' || host !== canonicalHost || normalizedPath !== pathname;
+      if (needsRedirect) {
+        window.location.replace(`https://${canonicalHost}${normalizedPath}${search}${hash}`);
+      }
+    })();
+  </script>
   <title>FAQ | Jagannath Travels – Car Rental Questions Answered</title>
   <meta name="description" content="Frequently asked questions about Jagannath Travels car rental services in Angul, Odisha. Find answers about booking, pricing, cancellation, and more." />
   <link rel="canonical" href="https://www.jagannathtravel.com/faq.html" />
